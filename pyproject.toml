@@ -1,0 +1,34 @@
+[project]
+name = "parameter-identifier"
+version = "0.1.0"
+description = "Hysteresis Parameter Identification (HPI)"
+requires-python = ">=3.14"
+dependencies = [
+    "PyQt5==5.15.11",
+    "PyQt5-Qt5==5.15.2; sys_platform == 'win32'",
+    "numpy",
+    "matplotlib",
+    "pillow",
+    "nuitka",
+]
+
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.uv]
+required-environments = [
+    "sys_platform == 'win32' and platform_machine == 'AMD64'",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

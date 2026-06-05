@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1420</width>
+    <height>920</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>Segoe UI</family>
+    <pointsize>14</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>Hysteresis Parameter Identification (HPI)</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="mainLayout">
+    <item>
+     <widget class="QTabWidget" name="tabs">
+      <widget class="QWidget" name="tabParameters">
+       <attribute name="title">
+        <string>Parameter Definition</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="tabParameterOuterLayout">
+        <item>
+         <layout class="QHBoxLayout" name="parameterLayout" stretch="4,3">
+          <item>
+           <layout class="QVBoxLayout" name="leftLayout" stretch="0,0,1">
+          <item>
+           <widget class="QGroupBox" name="groupExperiment">
+            <property name="title">
+             <string>Experimental Data</string>
+            </property>
+            <layout class="QGridLayout" name="gridExperiment">
+             <item row="0" column="0">
+              <widget class="QLabel" name="labelExperiment">
+               <property name="text">
+                <string>Data file</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1" colspan="3">
+              <widget class="QLineEdit" name="txtExperimentPath"/>
+             </item>
+             <item row="0" column="4">
+              <widget class="QPushButton" name="btnBrowseExperiment">
+               <property name="text">
+                <string>Browse</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelSkeleton">
+               <property name="text">
+                <string>Skeleton method</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboSkeletonMethod">
+               <item>
+                <property name="text">
+                 <string>Max displacement</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Max force</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QLabel" name="labelForceScale">
+               <property name="text">
+                <string>Force scale</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QDoubleSpinBox" name="spinForceScale">
+               <property name="decimals">
+                <number>6</number>
+               </property>
+               <property name="minimum">
+                <double>-1000000.000000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>1000000.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0" colspan="2">
+              <widget class="QCheckBox" name="chkShowSkeleton">
+               <property name="text">
+                <string>Mark skeleton points</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="2" colspan="3">
+              <widget class="QPushButton" name="btnPreprocess">
+               <property name="text">
+                <string>Load / Refresh Curve</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupAlgorithm">
+            <property name="title">
+             <string>Algorithm and OpenSees</string>
+            </property>
+            <layout class="QGridLayout" name="gridAlgorithm">
+             <item row="0" column="0" colspan="2">
+              <widget class="QCheckBox" name="chkCustomOpenSees">
+               <property name="text">
+                <string>Custom opensees.pyd</string>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2" colspan="2">
+              <widget class="QLineEdit" name="txtOpenSeesPath"/>
+             </item>
+             <item row="0" column="4">
+              <widget class="QPushButton" name="btnBrowseOpenSees">
+               <property name="text">
+                <string>Browse</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="0">
+              <widget class="QLabel" name="labelAlgorithm">
+               <property name="text">
+                <string>Algorithm</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="1">
+              <widget class="QComboBox" name="comboAlgorithm">
+               <item>
+                <property name="text">
+                 <string>PSO</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>GA</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item row="1" column="2">
+              <widget class="QPushButton" name="btnAlgorithmSettings">
+               <property name="text">
+                <string>Algorithm Parameters...</string>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="3">
+              <widget class="QCheckBox" name="chkUseSeed">
+               <property name="text">
+                <string>Fixed random seed</string>
+               </property>
+               <property name="checked">
+                <bool>true</bool>
+               </property>
+              </widget>
+             </item>
+             <item row="1" column="4">
+              <widget class="QSpinBox" name="spinSeed">
+               <property name="minimum">
+                <number>0</number>
+               </property>
+               <property name="maximum">
+                <number>2147483647</number>
+               </property>
+               <property name="value">
+                <number>42</number>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
+              <widget class="QLabel" name="labelWeight">
+               <property name="text">
+                <string>Skeleton weight</string>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="1">
+              <widget class="QDoubleSpinBox" name="spinSkeletonWeight">
+               <property name="decimals">
+                <number>3</number>
+               </property>
+               <property name="singleStep">
+                <double>0.200000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>1.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupExperimentPreview">
+            <property name="title">
+             <string>Experimental Hysteresis Curve</string>
+            </property>
+            <layout class="QVBoxLayout" name="previewLayout">
+             <item>
+              <widget class="QFrame" name="experimentChartFrame">
+               <property name="frameShape">
+                <enum>QFrame::StyledPanel</enum>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" name="rightLayout">
+          <item>
+           <widget class="QGroupBox" name="groupCode">
+           <property name="title">
+             <string>Material Definition</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalCode">
+             <item>
+              <widget class="QLabel" name="lblMaterialPrefix">
+               <property name="text">
+                <string/>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::PlainText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPlainTextEdit" name="txtMaterialCode">
+               <property name="font">
+                <font>
+                 <family>Consolas</family>
+                 <pointsize>11</pointsize>
+                </font>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="lblMaterialSuffix">
+               <property name="text">
+                <string>    return mats, ctrl_tag</string>
+               </property>
+               <property name="textFormat">
+                <enum>Qt::PlainText</enum>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </item>
+          <item>
+           <widget class="QGroupBox" name="groupParameterBounds">
+            <property name="title">
+             <string>Material Parameters</string>
+            </property>
+            <layout class="QVBoxLayout" name="verticalBounds">
+             <item>
+              <widget class="QTableWidget" name="tblParameters">
+               <column>
+                <property name="text">
+                 <string>Name</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Lower</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Upper</string>
+                </property>
+               </column>
+              </widget>
+             </item>
+             <item>
+             <layout class="QHBoxLayout" name="parameterButtons">
+               <item>
+                <widget class="QPushButton" name="btnAddParameter">
+                 <property name="text">
+                  <string>Add Parameter</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnRemoveParameter">
+                 <property name="text">
+                  <string>Remove Parameter</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QPushButton" name="btnDefaultMaterialParameters">
+                 <property name="text">
+                  <string>Use Defaults</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </item>
+            </layout>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="runButtons" stretch="0,0,1">
+         <item>
+          <widget class="QPushButton" name="btnStart">
+           <property name="text">
+            <string>Start</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="btnStop">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="text">
+            <string>Stop</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QProgressBar" name="progressRun">
+           <property name="value">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+      </widget>
+      <widget class="QWidget" name="tabResults">
+       <attribute name="title">
+        <string>Results</string>
+       </attribute>
+       <layout class="QVBoxLayout" name="verticalResults">
+        <item>
+         <layout class="QHBoxLayout" name="resultControls">
+          <item>
+           <widget class="QLabel" name="labelPlotParameter">
+            <property name="text">
+             <string>Parameter</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="comboPlotParameter"/>
+          </item>
+          <item>
+           <widget class="QLabel" name="labelGeneration">
+            <property name="text">
+             <string>Generation: 0</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QSlider" name="sliderGeneration">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="btnSaveData">
+            <property name="text">
+             <string>Save Data...</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="chartsLayout">
+          <item>
+           <widget class="QFrame" name="paramChartFrame">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="fitnessChartFrame">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QFrame" name="curveChartFrame">
+            <property name="frameShape">
+             <enum>QFrame::StyledPanel</enum>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QSplitter" name="splitResultBottom">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <widget class="QTableWidget" name="tblBestParameters">
+           <column>
+            <property name="text">
+             <string>Parameter</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Generation Best</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Global Best</string>
+            </property>
+           </column>
+          </widget>
+          <widget class="QPlainTextEdit" name="txtLog">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
